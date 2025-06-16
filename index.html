@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BuySocial Hero</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+    }
+
+    .hero-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .main-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Floating UI Styles */
+    .logo-badge {
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      background: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .logo-badge span {
+      color: #7a3cff;
+    }
+
+    .floating {
+      position: absolute;
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .post {
+      top: 30%;
+      left: 2%;
+      width: 60%;
+    }
+
+    .reactions {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .stats {
+      top: 20%;
+      right: 2%;
+      text-align: left;
+    }
+
+    .bottom-icons {
+      display: flex;
+      gap: 12px;
+      bottom: 8%;
+      left: 10%;
+    }
+
+    .bottom-icons span {
+      background: #fff;
+      padding: 6px 10px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      font-size: 14px;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 600px) {
+      .post {
+        top: 35%;
+        width: 85%;
+        font-size: 13px;
+        left: 5%;
+      }
+
+      .logo-badge {
+        top: 5%;
+        left: 5%;
+        font-size: 14px;
+      }
+
+      .stats {
+        top: 15%;
+        right: 5%;
+        font-size: 13px;
+      }
+
+      .bottom-icons {
+        bottom: 5%;
+        left: 5%;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-container">
+    <img src="your-image.png" alt="Happy woman" class="main-image" />
+    
+    <!-- Logo -->
+    <div class="logo-badge">buy.<span>social</span></div>
+    
+    <!-- Post -->
+    <div class="floating post">
+      <p><strong>Mary Greenwood</strong> · 2hrs ago<br>
+      I bought a pair of shoes and I really like how they look on my dress</p>
+      <div class="reactions">❤️ 2.6k &nbsp; 💬 648</div>
+    </div>
+    
+    <!-- Stats -->
+    <div class="floating stats">
+      <p><strong>Followers</strong><br>35.4K 📈</p>
+      <p><strong>Engagement</strong><br>18.9K 💬</p>
+      <p><strong>Posts</strong><br>35 📝</p>
+    </div>
+    
+    <!-- Bottom Icons -->
+    <div class="floating bottom-icons">
+      <span>➕</span>
+      <span>🔔</span>
+      <span>💬</span>
+      <span>🛍️</span>
+    </div>
+  </div>
+</body>
+</html>
