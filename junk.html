@@ -1,63 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple To-Do List</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      padding: 4rem 1rem;
+    }
 
-jsx
-import { createContext, useContext, useState } from 'react';
+    .todo-container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
 
-// Create a Context
-const ThemeContext = createContext();
+    .todo-container h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 1rem;
+    }
 
-// Provider component
-function App() {
-  const [theme, setTheme] = useState('light');
+    .todo-input {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
 
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <Toolbar />
-    </ThemeContext.Provider>
-  );
-}
+    .todo-input input {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
 
-// Component that uses useContext
-function Toolbar() {
-  const { theme } = useContext(ThemeContext);
+    .todo-input button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-  return (
-    <div>
-      <p>Current theme: {theme}</p>
-      <button onClick={() => useContext(ThemeContext).setTheme('dark')}>Switch to Dark</button>
+    .todo-input button:hover {
+      background: #218838;
+    }
+
+    ul.todo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul.todo-list li {
+      padding: 0.75rem 1rem;
+      background: #f1f1f1;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    ul.todo-list li.done {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.7rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .delete-btn:hover {
+      background: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="todo-container">
+    <h2>My To-Do List</h2>
+
+    <div class="todo-input">
+      <input type="text" id="taskInput" placeholder="Add a new task...">
+      <button onclick="addTask()">Add</button>
     </div>
-  );
-}
 
+    <ul class="todo-list" id="todoList">
+      <!-- Tasks will go here -->
+    </ul>
+  </div>
 
+  <script>
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const taskText = input.value.trim();
+      if (taskText === '') return;
 
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span onclick="toggleDone(this)">${taskText}</span>
+        <button class="delete-btn" onclick="removeTask(this)">Delete</button>
+      `;
 
+      document.getElementById('todoList').appendChild(li);
+      input.value = '';
+    }
 
+    function removeTask(button) {
+      button.parentElement.remove();
+    }
 
-import React, { useReducer } from 'react';
+    function toggleDone(span) {
+      span.parentElement.classList.toggle('done');
+    }
+  </script>
 
-const initialState = { count: 0 };
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'increment':
-      return { count: state.count + 1 };
-    case 'decrement':
-      return { count: state.count - 1 };
-    default:
-      return state;
-  }
-}
-
-function Counter() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  return (
-    <div>
-      <h2>Count: {state.count}</h2>
-      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
-      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
-    </div>
-  );
-}
-
-export default Counter;
+</body>
+</html>
